@@ -9,6 +9,58 @@ This platform consists of two sibling repositories:
 - **`infra/`** - Terraform IaC for Azure networking, identities, AKS (private), Azure DNS, Key Vault, baseline add-ons, and Argo CD bootstrap
 - **`gitops/`** - Argo CD apps repository with sample Go API application and ApplicationSets
 
+## 📊 Deployment Flow
+
+```mermaid
+graph TB
+    subgraph "Phase 1: Infrastructure Deployment"
+        A[Terraform Init] --> B[Azure Resource Group]
+        B --> C[Hub VNet + Firewall]
+        C --> D[Spoke VNet + AKS Subnets]
+        D --> E[Private DNS Zones]
+        E --> F[Key Vault + Managed Identities]
+        F --> G[Private AKS Cluster]
+        G --> H[Log Analytics Workspace]
+    end
+
+    subgraph "Phase 2: Platform Services"
+        H --> I[Metrics Server]
+        I --> J[Ingress NGINX]
+        J --> K[cert-manager]
+        K --> L[External Secrets]
+        L --> M[External DNS]
+        M --> N[CSI Secrets Store]
+        N --> O[Argo CD]
+    end
+
+    subgraph "Phase 3: GitOps Deployment"
+        O --> P[Argo CD Sync]
+        P --> Q[ApplicationSet]
+        Q --> R[hello-api Application]
+        R --> S[Production Workload]
+    end
+
+    subgraph "Security & Monitoring"
+        T[Azure Firewall] --> U[Egress Control]
+        V[Network Policies] --> W[Pod Security]
+        X[Workload Identity] --> Y[Zero Trust Auth]
+        Z[Azure Monitor] --> AA[Observability]
+    end
+
+    G --> T
+    G --> V
+    G --> X
+    G --> Z
+
+    style A fill:#e1f5fe
+    style O fill:#f3e5f5
+    style S fill:#e8f5e8
+    style T fill:#fff3e0
+    style V fill:#fff3e0
+    style X fill:#fff3e0
+    style Z fill:#fff3e0
+```
+
 ## ✨ Latest Updates
 
 - **Latest Provider Versions**: azurerm ~> 4.0, kubernetes ~> 2.0, helm ~> 2.0
