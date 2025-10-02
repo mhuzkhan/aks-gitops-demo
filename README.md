@@ -63,7 +63,7 @@ graph TB
 
 ## ✨ Latest Updates
 
-- **Latest Provider Versions**: azurerm ~> 4.0, kubernetes ~> 2.0, helm ~> 2.0
+- **Latest Provider Versions**: azurerm ~> 4.0, kubernetes ~> 2.0, helm ~> 3.0
 - **Kubernetes 1.30** support with modern security features
 - **Enhanced Monitoring**: OMS Agent with Log Analytics integration
 - **Updated Helm Charts**: Latest versions of all platform services
@@ -171,13 +171,14 @@ az aks command invoke -g <resource-group> -n <cluster-name> --command "kubectl g
 
 ### Platform Services
 
-- **Metrics Server 3.12.0** - Resource metrics for HPA
-- **Ingress NGINX 4.10.0** - Load balancing and ingress
-- **cert-manager v1.14.0** - Automatic TLS certificate management
-- **External Secrets** - Key Vault integration with Workload Identity
-- **External DNS** - DNS record management with User-Assigned MI
-- **CSI Secrets Store** - Key Vault CSI driver
-- **Argo CD 5.52.0** - GitOps continuous deployment
+- **Metrics Server 3.13.0** - Resource metrics for HPA
+- **Ingress NGINX 4.13.3** - Load balancing and ingress
+- **cert-manager v1.18.2** - Automatic TLS certificate management
+- **External Secrets 0.20.1** - Key Vault integration with Workload Identity
+- **External DNS 1.19.0** - DNS record management with User-Assigned MI
+- **CSI Secrets Store 1.5.4** - Key Vault CSI driver
+- **CSI Key Vault Provider 1.7.1** - Azure Key Vault CSI provider
+- **Argo CD 8.5.8** - GitOps continuous deployment
 
 ### Sample Application
 
@@ -301,7 +302,7 @@ See `gitops/docs/OPERATIONS.md` for detailed troubleshooting guide.
 ### Provider Updates
 - **azurerm ~> 4.0** - Latest Azure provider with enhanced security features
 - **kubernetes ~> 2.0** - Improved AKS private cluster support
-- **helm ~> 2.0** - Latest Helm 3.x compatibility
+- **helm ~> 3.0** - Latest Helm provider with enhanced features
 
 ### Security Enhancements
 - **Enhanced Key Vault** - Soft delete recovery and improved access policies
@@ -340,7 +341,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## ✅ Status
 
 - **✅ Syntax Validated** - All Terraform code passes validation
-- **✅ Latest Providers** - azurerm ~> 4.0, kubernetes ~> 2.0, helm ~> 2.0
+- **✅ Latest Providers** - azurerm ~> 4.0, kubernetes ~> 2.0, helm ~> 3.0
 - **✅ Security Hardened** - Zero-trust architecture with private AKS
 - **✅ Production Ready** - Comprehensive monitoring and logging
 - **✅ GitOps Ready** - Argo CD with automated deployment
