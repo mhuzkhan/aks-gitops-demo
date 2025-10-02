@@ -136,7 +136,7 @@ resource "helm_release" "csi_secrets_store" {
   repository = "https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts"
   chart      = "secrets-store-csi-driver"
   namespace  = "kube-system"
-  version    = "1.3.4"
+  version    = "1.5.4"
 
   values = [
     yamlencode({
