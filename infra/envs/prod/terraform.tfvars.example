@@ -1,0 +1,19 @@
+# Copy this file to terraform.tfvars and update the values
+
+location = "East US"
+environment = "prod"
+
+# DNS Configuration
+dns_zone_rg   = "rg-dns-prod"
+dns_zone_name = "example.com"
+
+# GitOps Repository
+gitops_repo_url = "https://github.com/mhuzkhan/aks-gitops-demo"
+
+# Tags
+tags = {
+  Environment = "prod"
+  Project     = "aks-zero-trust"
+  ManagedBy   = "terraform"
+  Owner       = "platform-team"
+}

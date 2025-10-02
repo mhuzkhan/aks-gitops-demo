@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: hello-api
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: prod
+            namespace: hello
+            valuesFile: values-prod.yaml
+  template:
+    metadata:
+      name: hello-api-{{name}}
+      namespace: argocd
+    spec:
+      project: workloads
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{namespace}}"
+      source:
+        repoURL: https://github.com/mhuzkhan/aks-gitops-demo
+        path: apps/hello-api
+        targetRevision: HEAD
+        helm:
+          valueFiles:
+            - values.yaml
+            - apps/hello-api/{{valuesFile}}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true

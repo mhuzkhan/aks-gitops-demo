@@ -1,0 +1,46 @@
+version: '3'
+
+vars:
+  ENV: prod
+
+tasks:
+  init-backend:
+    desc: "Create/prepare remote state backend (RG, Storage, Container)"
+    cmds:
+      - ./scripts/bootstrap-backend.sh {{.RG}} {{.SA}} {{.CN}} {{.LOCATION}}
+
+  tf-init:
+    dir: envs/{{.ENV}}
+    cmds:
+      - terraform init {{.ARGS}}
+
+  tf-plan:
+    dir: envs/{{.ENV}}
+    cmds:
+      - terraform plan {{.ARGS}}
+
+  tf-apply:
+    dir: envs/{{.ENV}}
+    cmds:
+      - terraform apply -auto-approve {{.ARGS}}
+
+  kubeconfig:
+    desc: "Print basic cluster info via az aks command invoke"
+    cmds:
+      - ./scripts/print-aks-kubeconfig.sh
+
+  destroy:
+    dir: envs/{{.ENV}}
+    cmds:
+      - terraform destroy -auto-approve {{.ARGS}}
+
+  validate:
+    desc: "Validate all Terraform configurations"
+    cmds:
+      - terraform validate
+    dir: envs/{{.ENV}}
+
+  fmt:
+    desc: "Format Terraform files"
+    cmds:
+      - terraform fmt -recursive

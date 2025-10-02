@@ -1,0 +1,16 @@
+apiVersion: v2
+name: hello-api
+description: A sample Go API application for AKS Zero-Trust Platform
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - go
+  - api
+  - microservice
+home: https://github.com/mhuzkhan/aks-gitops-demo
+sources:
+  - https://github.com/mhuzkhan/aks-gitops-demo
+maintainers:
+  - name: Platform Team
+    email: platform@example.com
