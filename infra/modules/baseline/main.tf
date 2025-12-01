@@ -161,7 +161,7 @@ resource "helm_release" "csi_keyvault_provider" {
   repository = "https://azure.github.io/secrets-store-csi-driver-provider-azure/charts"
   chart      = "csi-secrets-store-provider-azure"
   namespace  = "kube-system"
-  version    = "1.7.1"
+  version    = "1.7.2"
 
   values = [
     yamlencode({
