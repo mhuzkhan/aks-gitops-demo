@@ -78,7 +78,7 @@ resource "helm_release" "cert_manager" {
   repository       = "https://charts.jetstack.io"
   chart            = "cert-manager"
   namespace        = "cert-manager"
-  version          = "v1.19.1"
+  version          = "v1.19.2"
   create_namespace = true
 
   values = [
