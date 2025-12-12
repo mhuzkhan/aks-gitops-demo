@@ -17,20 +17,24 @@ This repository contains Terraform infrastructure-as-code for a production-grade
 
 ## Quick Start
 
-1. **Bootstrap remote state**:
+**Note**: The `Taskfile.yml` is located in the repository root. Run all `task` commands from the root directory.
+
+1. **Bootstrap remote state** (from repository root):
+
    ```bash
-   cd scripts
-   ./bootstrap-backend.sh <resource-group> <storage-account> <container> <location>
+   task init-backend RG=<resource-group> SA=<storage-account> CN=<container> LOCATION=<location>
    ```
 
-2. **Deploy infrastructure**:
+2. **Deploy infrastructure** (from repository root):
+
    ```bash
    task tf-init
    task tf-plan
    task tf-apply
    ```
 
-3. **Access private cluster**:
+3. **Access private cluster** (from repository root):
+
    ```bash
    task kubeconfig
    az aks command invoke -g <rg> -n <cluster> --command "kubectl get nodes"
@@ -38,13 +42,14 @@ This repository contains Terraform infrastructure-as-code for a production-grade
 
 ## Directory Structure
 
-```
+```text
 infra/
 ├── modules/           # Reusable Terraform modules
 ├── envs/prod/        # Production environment
 ├── scripts/          # Bootstrap and utility scripts
-├── Taskfile.yml      # Task orchestration
 └── README.md
+
+Note: Taskfile.yml is in the repository root directory
 ```
 
 ## Security Features
