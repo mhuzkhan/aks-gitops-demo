@@ -217,7 +217,7 @@ resource "helm_release" "external_dns" {
   repository       = "https://kubernetes-sigs.github.io/external-dns/"
   chart            = "external-dns"
   namespace        = "external-dns"
-  version          = "1.20.0"
+  version          = "1.21.1"
   create_namespace = true
 
   values = [
